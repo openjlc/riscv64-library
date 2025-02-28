@@ -97,21 +97,21 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
-​# 验证安装
+​## 验证安装
 ```bash
 # 启动 Docker
 sudo systemctl start docker
 ```
-# 检查版本
+## 检查版本
 docker --version  # 输出应有 `riscv64` 标识
 ​
-# 常见问题
+## 常见问题
 ​libseccomp 不兼容​	编译时指定 --prefix=/usr	安装 libseccomp-dev 或更新至 2.5+
 ​cgroup 权限错误​	内核参数添加 systemd.unified_cgroup_hierarchy=0	检查 /sys/fs/cgroup 目录权限
 ​SELinux 阻止容器启动​	运行 sudo setenforce 0 或配置策略	无
 ​OverlayFS 未启用​	执行 sudo modprobe overlay	同上
 ​
-# 替代方案
+## 替代方案
 ​Podman​（Fedora 优先推荐）：
 
 ```bash
