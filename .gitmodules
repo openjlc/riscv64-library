@@ -1,0 +1,6 @@
+[submodule "ceph-csi"]
+	path = ceph-csi
+	url = git@github.com:wxiao1002/ceph-csi-linux-riscv.git
+[submodule "k8s"]
+	path = k8s
+	url = git@github.com:wxiao1002/k8s-linux-riscv64.git
