@@ -25,7 +25,7 @@ scp -P 22222 ../../go-linux-riscv64-bootstrap.tbz root@localhost:/
 ### 阶段二：完整构建（在 RISC-V 设备执行）
 1. 解压引导包
 ```
-tar jxvf go-linux-riscv64-bootstrap.tbz  # 修正：补充解压参数 -j
+tar jxvf go-linux-riscv64-bootstrap.tbz  
 ```
 2. 获取最新 Go 源码
 ```
@@ -34,7 +34,7 @@ cd go
 ```
 3. 同步最新稳定版标签
 ```
-git fetch --tags  # 新增：确保获取全部标签
+git fetch --tags  
 git checkout $(git describe --tags)
 ```
 4. 配置构建环境
@@ -56,15 +56,9 @@ cd ../..
 tar -cvf go-$(git describe --tags).linux-riscv64.tar \
   --exclude=pkg/obj \
   --exclude=.git \
-  --exclude=testdata  go  # 新增：排除测试数据
+  --exclude=testdata  go  
 ```
 ## 关键要点说明
-1. 解压参数修正
-​原文档问题：.tbz 文件需用 bzip2 解压
-​修正建议：
-```bash
-tar jxvf go-linux-riscv64-bootstrap.tbz
-```
 2. 依赖项要求
 ```bash
 # RISC-V 设备需预装：
@@ -91,17 +85,11 @@ tar -C /usr/local -xzf go*.tar.gz
 go version
 #$ 输出应包含 "linux/riscv64"
 ```
-# 运行跨架构测试
-cat > hello.go <<EOF
+## 运行跨架构测试
+```cat > hello.go <<EOF
 package main
 import "fmt"
 func main() { fmt.Println("RISC-V Go Works!") }
 EOF
 go run hello.go
-技术文档修正对照表
-原文档内容	问题描述	修正方案
-tar vxf	缺少解压参数	改为 tar jxvf
-git describe --tags	可能缺失最新标签	增加 git fetch --tags
-未声明构建依赖	可能缺失编译工具链	添加 apt 安装步骤
-未优化编译参数	构建时间较长	添加 -j $(nproc) 并行编译参数
-undefined
+```
