@@ -98,8 +98,10 @@ WantedBy=multi-user.target
 EOF
 ```
 ## 启用服务
+```
 sudo systemctl daemon-reload
 sudo systemctl enable --now podman
+```
 ## 验证安装
 ```bash
 # 检查版本
